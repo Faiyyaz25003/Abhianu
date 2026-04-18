@@ -23,13 +23,7 @@ const NAV_ITEMS = [
       },
     ],
   },
-  {
-    label: "About",
-    children: [
-      { label: "Company", href: "/about/company" },
-      { label: "Team", href: "/about/team" },
-    ],
-  },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 

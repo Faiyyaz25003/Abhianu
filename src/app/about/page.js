@@ -1,10 +1,10 @@
-import Company from '@/Components/About/Company'
+import About from '@/Components/About/About'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <Company/>
+      <About/>
     </div>
   )
 }
