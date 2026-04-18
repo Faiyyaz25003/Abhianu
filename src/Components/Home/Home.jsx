@@ -1,3 +1,4 @@
+
 "use client";
 import { useEffect, useRef, useState } from "react";
 
@@ -40,29 +41,37 @@ const SERVICES = [
   },
 ];
 
-const PACKAGES = [
+const PROCESS = [
   {
-    name: "Essential",
-    price: "₹15,000",
-    hours: "4 Hours",
-    edited: "100 Photos",
-    delivery: "7 Days",
+    step: "01",
+    title: "Enquiry & Consultation",
+    description:
+      "Share your vision with us. We understand your requirements, date, venue, and style preferences over a free 30-minute call.",
+    icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
     highlight: false,
   },
   {
-    name: "Classic",
-    price: "₹28,000",
-    hours: "8 Hours",
-    edited: "250 Photos",
-    delivery: "5 Days",
+    step: "02",
+    title: "Booking & Planning",
+    description:
+      "Once confirmed, we lock your date with a booking advance. A detailed shot-list and timeline is created together.",
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
     highlight: true,
   },
   {
-    name: "Premium",
-    price: "₹50,000",
-    hours: "Full Day",
-    edited: "500+ Photos",
-    delivery: "3 Days",
+    step: "03",
+    title: "The Shoot Day",
+    description:
+      "We arrive early, blend into your event, and capture every emotion — candid or posed — with precision and artistry.",
+    icon: "M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z",
+    highlight: false,
+  },
+  {
+    step: "04",
+    title: "Editing & Delivery",
+    description:
+      "Every selected photo is colour-graded and retouched. Your gallery is delivered via a private online link within the agreed timeline.",
+    icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
     highlight: false,
   },
 ];
@@ -86,6 +95,24 @@ const TESTIMONIALS = [
     text: "Captured the vibe perfectly. Clients loved every single shot from the event.",
     stars: 5,
   },
+  {
+    name: "Sneha & Vikram",
+    event: "Wedding – Pune",
+    text: "We were so nervous about the photos but the results left us speechless. Every candid moment was pure magic.",
+    stars: 5,
+  },
+  {
+    name: "Aditya Sharma",
+    event: "Portrait Session – Juhu",
+    text: "Professional, patient and incredibly talented. My LinkedIn profile picture has never looked this good!",
+    stars: 5,
+  },
+  {
+    name: "Meera Iyer",
+    event: "Corporate Event – BKC",
+    text: "Delivered 300+ edited photos within 3 days. The quality and turnaround time was simply outstanding.",
+    stars: 5,
+  },
 ];
 
 const STATS = [
@@ -107,6 +134,105 @@ function StarRating({ count }) {
   );
 }
 
+// ─── Scroll Reveal Hook ───────────────────────────────────────────────────────
+function useScrollReveal(options = {}) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      {
+        threshold: options.threshold ?? 0.15,
+        rootMargin: options.rootMargin ?? "0px",
+      },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, visible];
+}
+
+// ─── Reveal Wrapper Component ─────────────────────────────────────────────────
+function Reveal({ children, delay = 0, direction = "up", className = "" }) {
+  const [ref, visible] = useScrollReveal();
+
+  const transforms = {
+    up: "translateY(50px)",
+    left: "translateX(-50px)",
+    right: "translateX(50px)",
+    scale: "translateY(30px) scale(0.95)",
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : transforms[direction],
+        transition: `opacity 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+        willChange: "opacity, transform",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// ─── Stagger Container ────────────────────────────────────────────────────────
+function StaggerReveal({
+  children,
+  baseDelay = 0,
+  stagger = 0.12,
+  direction = "up",
+  className = "",
+}) {
+  return (
+    <>
+      {Array.isArray(children) ? (
+        children.map((child, i) => (
+          <Reveal
+            key={i}
+            delay={baseDelay + i * stagger}
+            direction={direction}
+            className={className}
+          >
+            {child}
+          </Reveal>
+        ))
+      ) : (
+        <Reveal delay={baseDelay} direction={direction} className={className}>
+          {children}
+        </Reveal>
+      )}
+    </>
+  );
+}
+
+// ─── Section Title ────────────────────────────────────────────────────────────
+function SectionTitle({ eyebrow, heading }) {
+  return (
+    <div className="text-center mb-16 gold-line">
+      <Reveal>
+        <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-4">
+          {eyebrow}
+        </p>
+        <h2 className="text-4xl md:text-5xl font-light">{heading}</h2>
+      </Reveal>
+    </div>
+  );
+}
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
 export default function Home() {
   const [heroLoaded, setHeroLoaded] = useState(false);
   const parallaxRef = useRef(null);
@@ -127,7 +253,7 @@ export default function Home() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
         .font-sans-dm { font-family: 'DM Sans', sans-serif; }
-        .hero-text { animation: fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
+        .hero-text   { animation: fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
         .hero-text-2 { animation: fadeUp 1.1s 0.2s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
         .hero-text-3 { animation: fadeUp 1.1s 0.4s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
         @keyframes fadeUp { from { opacity:0; transform: translateY(40px); } to { opacity:1; transform: translateY(0); } }
@@ -140,11 +266,9 @@ export default function Home() {
         .pkg-hover:hover { transform: translateY(-6px); }
         .shimmer { background: linear-gradient(90deg, transparent, rgba(201,168,76,0.08), transparent); background-size: 200% 100%; animation: shimmer 3s infinite; }
         @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-        .reveal { opacity:0; transform:translateY(30px); transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
-        .reveal.visible { opacity:1; transform:translateY(0); }
       `}</style>
 
-      {/* HERO */}
+      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <section
         id="home"
         className="relative h-screen flex items-center justify-center overflow-hidden"
@@ -161,7 +285,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#080808]" />
         </div>
 
-        {/* Gold grain overlay */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -208,150 +331,145 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
+      {/* ── STATS ────────────────────────────────────────────────────────────── */}
       <section className="py-16 border-y border-white/5 shimmer">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {STATS.map((s) => (
-            <div key={s.label}>
+          {STATS.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.1} direction="up">
               <p className="text-4xl md:text-5xl font-light text-[#c9a84c] mb-1">
                 {s.value}
               </p>
               <p className="font-sans-dm text-[10px] tracking-[0.3em] text-white/40 uppercase">
                 {s.label}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      {/* SERVICES */}
+      {/* ── SERVICES ─────────────────────────────────────────────────────────── */}
       <section id="services" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 gold-line">
-            <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-4">
-              What We Do
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light">Our Services</h2>
-          </div>
+          <SectionTitle eyebrow="What We Do" heading="Our Services" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {SERVICES.map((svc, i) => (
-              <a
-                key={svc.id}
-                href={svc.href}
-                className="card-hover img-zoom relative group block overflow-hidden rounded-sm bg-[#111] cursor-pointer"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <div className="aspect-[3/4] overflow-hidden relative">
-                  <img
-                    src={svc.image}
-                    alt={svc.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                  {svc.tag && (
-                    <span className="absolute top-4 left-4 font-sans-dm text-[9px] tracking-[0.3em] uppercase px-3 py-1 bg-[#c9a84c] text-black">
-                      {svc.tag}
+              <Reveal key={svc.id} delay={i * 0.12} direction="up">
+                <a
+                  href={svc.href}
+                  className="card-hover img-zoom relative group block overflow-hidden rounded-sm bg-[#111] cursor-pointer"
+                >
+                  <div className="aspect-[3/4] overflow-hidden relative">
+                    <img
+                      src={svc.image}
+                      alt={svc.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                    {svc.tag && (
+                      <span className="absolute top-4 left-4 font-sans-dm text-[9px] tracking-[0.3em] uppercase px-3 py-1 bg-[#c9a84c] text-black">
+                        {svc.tag}
+                      </span>
+                    )}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-light mb-1">{svc.title}</h3>
+                    <p className="font-sans-dm text-xs text-white/50 mb-4">
+                      {svc.subtitle}
+                    </p>
+                    <span className="font-sans-dm text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
+                      Explore
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                        />
+                      </svg>
                     </span>
-                  )}
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-2xl font-light mb-1">{svc.title}</h3>
-                  <p className="font-sans-dm text-xs text-white/50 mb-4">
-                    {svc.subtitle}
-                  </p>
-                  <span className="font-sans-dm text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
-                    Explore
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </a>
+                  </div>
+                </a>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ABOUT / SIGNATURE */}
+      {/* ── ABOUT ────────────────────────────────────────────────────────────── */}
       <section id="about" className="py-24 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-sm">
-              <img
-                src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80"
-                alt="Photographer"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-6 -right-6 bg-[#c9a84c] text-black p-6 w-40">
-              <p className="text-3xl font-light">12+</p>
-              <p className="font-sans-dm text-[9px] tracking-[0.3em] uppercase">
-                Years in the craft
-              </p>
-            </div>
-          </div>
-          <div>
-            <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-6">
-              The Photographer
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light leading-tight mb-6">
-              I don't just take photos.
-              <br />
-              <em className="italic">I tell your story.</em>
-            </h2>
-            <div className="w-12 h-px bg-[#c9a84c] mb-6" />
-            <p className="font-sans-dm text-sm text-white/50 leading-relaxed mb-4">
-              Based in Mumbai, I've spent over a decade documenting weddings,
-              events, and spaces across India. Every shot is intentional — every
-              frame, a memory worth keeping.
-            </p>
-            <p className="font-sans-dm text-sm text-white/50 leading-relaxed mb-10">
-              My style blends cinematic light, candid emotion, and editorial
-              elegance. Whether it's a grand wedding or an intimate portrait
-              session, I bring quiet attention to every detail.
-            </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-3 font-sans-dm text-xs tracking-[0.3em] uppercase text-[#c9a84c] border-b border-[#c9a84c]/40 pb-1 hover:border-[#c9a84c] transition-colors"
-            >
-              Let's Work Together
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+          <Reveal direction="left">
+            <div className="relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-sm">
+                <img
+                  src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80"
+                  alt="Photographer"
+                  className="w-full h-full object-cover"
                 />
-              </svg>
-            </a>
-          </div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-[#c9a84c] text-black p-6 w-40">
+                <p className="text-3xl font-light">12+</p>
+                <p className="font-sans-dm text-[9px] tracking-[0.3em] uppercase">
+                  Years in the craft
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal direction="right" delay={0.15}>
+            <div>
+              <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-6">
+                The Photographer
+              </p>
+              <h2 className="text-4xl md:text-5xl font-light leading-tight mb-6">
+                I don't just take photos.
+                <br />
+                <em className="italic">I tell your story.</em>
+              </h2>
+              <div className="w-12 h-px bg-[#c9a84c] mb-6" />
+              <p className="font-sans-dm text-sm text-white/50 leading-relaxed mb-4">
+                Based in Mumbai, I've spent over a decade documenting weddings,
+                events, and spaces across India. Every shot is intentional —
+                every frame, a memory worth keeping.
+              </p>
+              <p className="font-sans-dm text-sm text-white/50 leading-relaxed mb-10">
+                My style blends cinematic light, candid emotion, and editorial
+                elegance. Whether it's a grand wedding or an intimate portrait
+                session, I bring quiet attention to every detail.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 font-sans-dm text-xs tracking-[0.3em] uppercase text-[#c9a84c] border-b border-[#c9a84c]/40 pb-1 hover:border-[#c9a84c] transition-colors"
+              >
+                Let's Work Together
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* PORTFOLIO TEASER */}
+      {/* ── PORTFOLIO ────────────────────────────────────────────────────────── */}
       <section id="portfolio" className="py-24 px-6 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 gold-line">
-            <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-4">
-              Selected Work
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light">Portfolio</h2>
-          </div>
+          <SectionTitle eyebrow="Selected Work" heading="Portfolio" />
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
             {[
               {
@@ -375,8 +493,10 @@ export default function Home() {
                 span: "",
               },
             ].map((img, i) => (
-              <div
+              <Reveal
                 key={i}
+                delay={i * 0.1}
+                direction="scale"
                 className={`img-zoom overflow-hidden bg-[#111] rounded-sm ${img.span}`}
               >
                 <div
@@ -388,130 +508,153 @@ export default function Home() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <a
-              href="/portfolio"
-              className="inline-flex items-center gap-3 font-sans-dm text-xs tracking-[0.3em] uppercase px-10 py-4 border border-white/20 hover:border-[#c9a84c] hover:text-[#c9a84c] transition-all duration-300"
-            >
-              View Full Portfolio
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
+          <Reveal delay={0.3} direction="up">
+            <div className="text-center mt-12">
+              <a
+                href="/portfolio"
+                className="inline-flex items-center gap-3 font-sans-dm text-xs tracking-[0.3em] uppercase px-10 py-4 border border-white/20 hover:border-[#c9a84c] hover:text-[#c9a84c] transition-all duration-300"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                />
-              </svg>
-            </a>
-          </div>
+                View Full Portfolio
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* PACKAGES */}
-      <section id="packages" className="py-24 px-6">
+      {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
+      <section id="process" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16 gold-line">
-            <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-4">
-              Investment
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light">Packages</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {PACKAGES.map((pkg) => (
-              <div
-                key={pkg.name}
-                className={`pkg-hover relative p-8 border rounded-sm ${pkg.highlight ? "border-[#c9a84c] bg-[#c9a84c]/5" : "border-white/10 bg-[#0f0f0f]"}`}
-              >
-                {pkg.highlight && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 font-sans-dm text-[9px] tracking-[0.4em] uppercase px-4 py-1 bg-[#c9a84c] text-black">
-                    Most Popular
-                  </span>
-                )}
-                <p
-                  className={`font-sans-dm text-[10px] tracking-[0.4em] uppercase mb-4 ${pkg.highlight ? "text-[#c9a84c]" : "text-white/40"}`}
+          <SectionTitle eyebrow="How It Works" heading="Our Process" />
+          <div className="grid md:grid-cols-2 gap-6">
+            {PROCESS.map((step, i) => (
+              <Reveal key={step.step} delay={i * 0.15} direction="up">
+                <div
+                  className={`pkg-hover relative p-8 border rounded-sm h-full group ${
+                    step.highlight
+                      ? "border-[#c9a84c] bg-[#c9a84c]/5"
+                      : "border-white/10 bg-[#0f0f0f]"
+                  }`}
                 >
-                  {pkg.name}
-                </p>
-                <p className="text-4xl font-light mb-1">{pkg.price}</p>
-                <p className="font-sans-dm text-xs text-white/30 mb-8">
-                  onwards
-                </p>
-                <div className="space-y-4 mb-8">
-                  {[
-                    ["Duration", pkg.hours],
-                    ["Edited Photos", pkg.edited],
-                    ["Delivery", pkg.delivery],
-                  ].map(([k, v]) => (
+                  <div className="flex items-start gap-5">
                     <div
-                      key={k}
-                      className="flex justify-between items-center border-b border-white/5 pb-3"
+                      className={`flex-shrink-0 w-12 h-12 rounded-sm flex items-center justify-center ${
+                        step.highlight
+                          ? "bg-[#c9a84c]"
+                          : "bg-white/5 border border-white/10"
+                      }`}
                     >
-                      <span className="font-sans-dm text-xs text-white/40">
-                        {k}
-                      </span>
-                      <span className="font-sans-dm text-xs text-white/80">
-                        {v}
-                      </span>
+                      <svg
+                        className={`w-5 h-5 ${step.highlight ? "text-black" : "text-[#c9a84c]"}`}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={1.5}
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d={step.icon}
+                        />
+                      </svg>
                     </div>
-                  ))}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span
+                          className={`font-sans-dm text-[10px] tracking-[0.4em] ${
+                            step.highlight ? "text-[#c9a84c]" : "text-white/25"
+                          }`}
+                        >
+                          {step.step}
+                        </span>
+                        {step.highlight && (
+                          <span className="font-sans-dm text-[9px] tracking-[0.3em] uppercase px-2 py-0.5 bg-[#c9a84c] text-black">
+                            Key Step
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-xl font-light mb-3">{step.title}</h3>
+                      <p className="font-sans-dm text-sm text-white/45 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                  {i < PROCESS.length - 1 && (
+                    <div className="hidden md:block absolute -bottom-3 left-1/2 -translate-x-1/2 w-px h-6 bg-[#c9a84c]/20" />
+                  )}
                 </div>
-                <a
-                  href="/packages"
-                  className={`block text-center font-sans-dm text-xs tracking-[0.3em] uppercase py-3 transition-all duration-300 ${pkg.highlight ? "bg-[#c9a84c] text-black hover:bg-[#e0bb5c]" : "border border-white/20 hover:border-[#c9a84c] hover:text-[#c9a84c]"}`}
-                >
-                  View Details
-                </a>
-              </div>
+              </Reveal>
             ))}
           </div>
-          <p className="font-sans-dm text-xs text-white/30 text-center mt-8 tracking-wide">
-            Custom packages available · Travel outside Mumbai at additional cost
-          </p>
+          <Reveal delay={0.3} direction="up">
+            <div className="text-center mt-12">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 font-sans-dm text-xs tracking-[0.3em] uppercase px-10 py-4 bg-[#c9a84c] text-black hover:bg-[#e0bb5c] transition-all duration-300"
+              >
+                Start Your Journey
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* ── TESTIMONIALS ─────────────────────────────────────────────────────── */}
       <section id="testimonials" className="py-24 px-6 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 gold-line">
-            <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-4">
-              Kind Words
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light">Client Stories</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.name}
-                className="border border-white/8 bg-[#0f0f0f] p-8 rounded-sm hover:border-[#c9a84c]/30 transition-colors duration-500"
-              >
-                <StarRating count={t.stars} />
-                <p className="font-light text-lg leading-relaxed text-white/80 mb-6 italic">
-                  "{t.text}"
-                </p>
-                <div className="border-t border-white/8 pt-4">
-                  <p className="font-sans-dm text-sm text-white font-medium">
-                    {t.name}
+          <SectionTitle eyebrow="Kind Words" heading="Client Stories" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {TESTIMONIALS.map((t, i) => (
+              <Reveal key={t.name} delay={(i % 3) * 0.15} direction="up">
+                <div className="border border-white/8 bg-[#0f0f0f] p-8 rounded-sm hover:border-[#c9a84c]/30 transition-colors duration-500 h-full">
+                  <StarRating count={t.stars} />
+                  <p className="font-light text-lg leading-relaxed text-white/80 mb-6 italic">
+                    "{t.text}"
                   </p>
-                  <p className="font-sans-dm text-xs text-white/30 tracking-wider mt-0.5">
-                    {t.event}
-                  </p>
+                  <div className="border-t border-white/8 pt-4">
+                    <p className="font-sans-dm text-sm text-white font-medium">
+                      {t.name}
+                    </p>
+                    <p className="font-sans-dm text-xs text-white/30 tracking-wider mt-0.5">
+                      {t.event}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ── CTA ──────────────────────────────────────────────────────────────── */}
       <section id="contact" className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -522,44 +665,52 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-[#080808]" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-6">
-            Get In Touch
-          </p>
-          <h2 className="text-4xl md:text-6xl font-light leading-tight mb-6">
-            Ready to Create
-            <br />
-            <em className="italic text-[#c9a84c]">Something Beautiful?</em>
-          </h2>
-          <p className="font-sans-dm text-sm text-white/40 mb-12 tracking-wide">
-            Serving Mumbai, Pune &amp; Pan India · Destination Shoots Welcome
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="tel:8976626521"
-              className="px-10 py-4 bg-[#c9a84c] text-black font-sans-dm text-xs tracking-[0.3em] uppercase hover:bg-[#e0bb5c] hover:shadow-[0_0_40px_rgba(201,168,76,0.3)] transition-all duration-300"
-            >
-              Call Now
-            </a>
-            <a
-              href="https://wa.me/8976626521"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-10 py-4 border border-white/30 font-sans-dm text-xs tracking-[0.3em] uppercase hover:border-[#c9a84c] hover:text-[#c9a84c] transition-all duration-300"
-            >
-              WhatsApp Us
-            </a>
-          </div>
-          <div className="flex items-center justify-center gap-8 border-t border-white/8 pt-8">
-            {["Instagram", "Facebook", "YouTube"].map((social) => (
+          <Reveal direction="up">
+            <p className="font-sans-dm text-[10px] tracking-[0.5em] text-[#c9a84c] uppercase mb-6">
+              Get In Touch
+            </p>
+            <h2 className="text-4xl md:text-6xl font-light leading-tight mb-6">
+              Ready to Create
+              <br />
+              <em className="italic text-[#c9a84c]">Something Beautiful?</em>
+            </h2>
+            <p className="font-sans-dm text-sm text-white/40 mb-12 tracking-wide">
+              Serving Mumbai, Pune &amp; Pan India · Destination Shoots Welcome
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.2} direction="up">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a
-                key={social}
-                href="#"
-                className="font-sans-dm text-[10px] tracking-[0.3em] uppercase text-white/30 hover:text-[#c9a84c] transition-colors"
+                href="tel:8976626521"
+                className="px-10 py-4 bg-[#c9a84c] text-black font-sans-dm text-xs tracking-[0.3em] uppercase hover:bg-[#e0bb5c] hover:shadow-[0_0_40px_rgba(201,168,76,0.3)] transition-all duration-300"
               >
-                {social}
+                Call Now
               </a>
-            ))}
-          </div>
+              <a
+                href="https://wa.me/8976626521"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-10 py-4 border border-white/30 font-sans-dm text-xs tracking-[0.3em] uppercase hover:border-[#c9a84c] hover:text-[#c9a84c] transition-all duration-300"
+              >
+                WhatsApp Us
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.35} direction="up">
+            <div className="flex items-center justify-center gap-8 border-t border-white/8 pt-8">
+              {["Instagram", "Facebook", "YouTube"].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="font-sans-dm text-[10px] tracking-[0.3em] uppercase text-white/30 hover:text-[#c9a84c] transition-colors"
+                >
+                  {social}
+                </a>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>
