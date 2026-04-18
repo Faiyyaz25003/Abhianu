@@ -138,7 +138,7 @@ function AnimatedCounter({ target, suffix = "" }) {
 
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 
-export default function AboutPage() {
+export default function About() {
   const [heroReady, setHeroReady] = useState(false);
   const [activePhilo, setActivePhilo] = useState(0);
   const parallaxRef = useRef(null);
