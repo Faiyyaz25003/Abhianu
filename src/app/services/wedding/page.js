@@ -1,10 +1,11 @@
-import AppDev from '@/Components/Services/AppDev'
+import Wedding from '@/Components/Services/Wedding'
+
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <AppDev/>
+      <Wedding/>
     </div>
   )
 }
