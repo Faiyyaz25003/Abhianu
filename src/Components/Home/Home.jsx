@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect, useRef, useState } from "react";
 
@@ -13,6 +12,15 @@ const SERVICES = [
     tag: "Most Booked",
   },
   {
+    id: "night-club",
+    title: "Night Club",
+    subtitle: "Energy. Motion. Night.",
+    href: "/services/night-club",
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
+    tag: null,
+  },
+  {
     id: "real-estate",
     title: "Real Estate",
     subtitle: "Spaces that sell themselves",
@@ -23,21 +31,12 @@ const SERVICES = [
   },
   {
     id: "events",
-    title: "Events & Club",
-    subtitle: "Energy. Motion. Night.",
+    title: "Events",
+    subtitle: "Every moment, unforgettable",
     href: "/services/events",
     image:
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
     tag: null,
-  },
-  {
-    id: "portrait",
-    title: "Portrait",
-    subtitle: "Your story, your frame",
-    href: "/services/portrait",
-    image:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80",
-    tag: "New",
   },
 ];
 
