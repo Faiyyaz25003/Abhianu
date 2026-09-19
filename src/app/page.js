@@ -4,6 +4,12 @@ import Link from "next/link";
 import Navbar from "@/Components/Layout/Navbar/Navbar";
 import { useState } from "react";
 
+const PHONE_NUMBER = "8976626521";
+const WHATSAPP_LINK = `https://wa.me/91${PHONE_NUMBER}?text=${encodeURIComponent(
+  "Hi, I would like to book a shoot."
+)}`;
+const CALL_LINK = `tel:+91${PHONE_NUMBER}`;
+
 
 const Icon = {
   Camera: (p) => (
@@ -183,11 +189,11 @@ const occasions = [
   {
     title: "Anchoring",
     href: "/anchoring",
-    desc: "Professional anchoring for events, shows, and celebrations.",
+    desc: "Professional anchoring for events, shows, weddings and celebrations.",
     img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Mic,
   },
-   {
+  {
     title: "Devotional",
     href: "/devotional",
     desc: "Poojas, satsangs, jagrans and religious ceremonies covered with respect and devotion.",
@@ -197,9 +203,9 @@ const occasions = [
   {
     title: "Celebrations Coverage",
     href: "/CelebrationsCoverage",
-    desc: "Cherish your little one's special moments with our photography.",
-    img: "https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=800&auto=format&fit=crop",
-    icon: Icon.Stroller,
+    desc: "Birthdays, baby ceremonies, anniversaries and every family celebration captured beautifully.",
+    img: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?q=80&w=800&auto=format&fit=crop",
+    icon: Icon.Gift,
   },
   {
     title: "Corporate",
@@ -365,16 +371,12 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href="#"
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-amber-500 hover:bg-amber-600 transition-colors text-white text-sm font-semibold px-7 py-3 rounded-md"
             >
               BOOK NOW
-            </a>
-            <a
-              href="#"
-              className="border border-slate-300 hover:border-slate-900 transition-colors text-slate-800 text-sm font-semibold px-7 py-3 rounded-md"
-            >
-              VIEW PORTFOLIO
             </a>
           </div>
           <div className="flex gap-2 mt-10">
@@ -523,13 +525,15 @@ export default function Home() {
             </h2>
             <div className="flex flex-wrap gap-4 mt-8">
               <a
-                href="#"
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-amber-500 hover:bg-amber-600 transition-colors text-white text-sm font-semibold px-7 py-3 rounded-md"
               >
                 BOOK NOW
               </a>
               <a
-                href="#"
+                href={CALL_LINK}
                 className="border border-slate-300 hover:border-slate-900 transition-colors text-slate-800 text-sm font-semibold px-7 py-3 rounded-md"
               >
                 CONTACT US
