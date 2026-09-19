@@ -377,7 +377,7 @@ export default function Navbar() {
                         </Link>
 
                         <Link
-                          href="/event/birthday"
+                          href="/birthday"
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
@@ -385,7 +385,7 @@ export default function Navbar() {
                         </Link>
 
                         <Link
-                          href="/event/baby-ceremony"
+                          href="/CelebrationsCoverage"
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
@@ -393,7 +393,7 @@ export default function Navbar() {
                         </Link>
 
                         <Link
-                          href="/event/corporate"
+                          href="/corporate"
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
