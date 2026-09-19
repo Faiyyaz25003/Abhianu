@@ -55,7 +55,7 @@ const reasons = [
 export default function Contact() {
   return (
     <main className="bg-white text-[#171717]">
-      <Navbar/>
+      <Navbar />
       {/* ================= HERO ================= */}
       <section className="grid min-h-[610px] grid-cols-1 overflow-hidden lg:grid-cols-[48%_52%]">
         {/* LEFT CONTENT */}
@@ -83,7 +83,7 @@ export default function Contact() {
           {/* BUTTONS */}
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/8976626521"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center border border-[#c58b22] bg-[#c58b22] px-7 py-[14px] text-[11px] font-bold tracking-[1.5px] text-white transition-all duration-300 hover:bg-[#a87319]"
@@ -92,7 +92,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="tel:+919876543210"
+              href="tel:+8976626521"
               className="inline-flex items-center justify-center border border-[#c58b22] px-7 py-[14px] text-[11px] font-bold tracking-[1.5px] text-[#171717] transition-all duration-300 hover:bg-[#c58b22] hover:text-white"
             >
               CALL US
@@ -311,7 +311,7 @@ export default function Contact() {
           </p>
 
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/8976626521"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-[#c58b22] px-7 py-[15px] text-[11px] font-bold tracking-[1.5px] text-white transition-all duration-300 hover:bg-[#a87319]"
