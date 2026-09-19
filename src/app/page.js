@@ -69,6 +69,12 @@ const Icon = {
       <path d="M5 8c4-1 9-1 12 1.5M6 8v9M6 8 5 5M9 17h9l1.5-6.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
+  Diya: (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" {...p}>
+      <path d="M3.5 14h17c0 3.5-3.6 6-8.5 6s-8.5-2.5-8.5-6z" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 12c-2-1.6-2-4 0-6.5 2 2.5 2 4.9 0 6.5z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
   Briefcase: (p) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" {...p}>
       <rect x="3.5" y="8" width="17" height="11" rx="1.5" />
@@ -181,15 +187,15 @@ const occasions = [
     img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Mic,
   },
-  {
-    title: "Birthday",
+   {
+    title: "Devotional",
     href: "/devotional",
-    desc: "Colorful and fun-filled birthday photography for all ages.",
-    img: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?q=80&w=800&auto=format&fit=crop",
-    icon: Icon.Gift,
+    desc: "Poojas, satsangs, jagrans and religious ceremonies covered with respect and devotion.",
+    img: "https://images.unsplash.com/photo-1635192592106-77a5aacbe1a3?q=80&w=800&auto=format&fit=crop",
+    icon: Icon.Diya,
   },
   {
-    title: "Baby Ceremony",
+    title: "Celebrations Coverage",
     href: "/CelebrationsCoverage",
     desc: "Cherish your little one's special moments with our photography.",
     img: "https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=800&auto=format&fit=crop",
