@@ -377,7 +377,7 @@ export default function Navbar() {
                         </Link>
 
                         <Link
-                          href="/birthday"
+                          href="/devotional"
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
