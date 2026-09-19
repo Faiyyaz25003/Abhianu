@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Navbar from "@/Components/Layout/Navbar/Navbar";
 import { useState } from "react";
 
@@ -144,24 +145,28 @@ const Icon = {
 const services = [
   {
     title: "Wedding",
+    href: "/wedding",
     desc: "Beautiful wedding photography to capture your special moments forever.",
     img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Rings,
   },
   {
     title: "Night Club",
+    href: "/club",
     desc: "High-energy nightlife photography that brings out the best of every moment.",
     img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Globe,
   },
   {
     title: "Real Estate",
+    href: "/realestate",
     desc: "Professional real estate photography that showcases spaces beautifully and effectively.",
     img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Home,
   },
   {
     title: "Event",
+    href: "#event-types", // navbar me Event ka apna page nahi hai, sirf dropdown hai
     desc: "We cover all kinds of events with creativity, professionalism and attention to detail.",
     img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Calendar,
@@ -171,24 +176,28 @@ const services = [
 const occasions = [
   {
     title: "Anchoring",
+    href: "/anchoring",
     desc: "Professional anchoring for events, shows, and celebrations.",
     img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Mic,
   },
   {
     title: "Birthday",
+    href: "/devotional",
     desc: "Colorful and fun-filled birthday photography for all ages.",
     img: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Gift,
   },
   {
     title: "Baby Ceremony",
+    href: "/CelebrationsCoverage",
     desc: "Cherish your little one's special moments with our photography.",
     img: "https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Stroller,
   },
   {
     title: "Corporate",
+    href: "/corporate",
     desc: "Corporate events, conferences, and professional gatherings.",
     img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Briefcase,
@@ -260,7 +269,10 @@ function EyebrowHeading({ eyebrow, title }) {
 function ServiceCard({ item }) {
   const IconComp = item.icon;
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+    <Link
+      href={item.href}
+      className="block bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
+    >
       <div className="relative h-48 overflow-hidden">
         <img
           src={item.img}
@@ -276,14 +288,11 @@ function ServiceCard({ item }) {
           {item.title}
         </h3>
         <p className="text-sm text-slate-500 leading-relaxed mb-4">{item.desc}</p>
-        <a
-          href="#"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-amber-600 uppercase tracking-wide hover:gap-2 transition-all"
-        >
+        <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-600 uppercase tracking-wide group-hover:gap-2 transition-all">
           Explore More <Icon.Arrow className="w-3.5 h-3.5" />
-        </a>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -408,7 +417,10 @@ export default function Home() {
       </section>
 
       {/* ---------- Event Types ---------- */}
-      <section className="max-w-7xl mx-auto px-5 md:px-8 pt-24 pb-8">
+      <section
+        id="event-types"
+        className="max-w-7xl mx-auto px-5 md:px-8 pt-24 pb-8 scroll-mt-24"
+      >
         <EyebrowHeading eyebrow="EVENT TYPES" title="We Cover Every Occasion" />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {occasions.map((o) => (
