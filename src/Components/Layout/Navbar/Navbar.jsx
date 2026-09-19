@@ -381,7 +381,7 @@ export default function Navbar() {
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
-                          Birthday
+                          Devotional
                         </Link>
 
                         <Link
@@ -389,7 +389,7 @@ export default function Navbar() {
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
-                          Baby Ceremony
+                          Celebrations Coverage
                         </Link>
 
                         <Link
