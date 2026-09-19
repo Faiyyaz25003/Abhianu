@@ -369,7 +369,7 @@ export default function Navbar() {
                     {mobileEvent && (
                       <div className="ml-5 border-l border-[#e5d2ad] pl-4">
                         <Link
-                          href="/event/anchoring"
+                          href="/anchoring"
                           onClick={() => setMobileMenu(false)}
                           className="block py-2.5 text-[10px] uppercase tracking-[1.2px] text-[#777] hover:text-[#c58b22]"
                         >
