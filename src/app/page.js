@@ -190,7 +190,7 @@ const occasions = [
     title: "Anchoring",
     href: "/anchoring",
     desc: "Professional anchoring for events, shows, weddings and celebrations.",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+    img: "anchor.jpg",
     icon: Icon.Mic,
   },
   {
@@ -204,7 +204,7 @@ const occasions = [
     title: "Celebrations Coverage",
     href: "/CelebrationsCoverage",
     desc: "Birthdays, baby ceremonies, anniversaries and every family celebration captured beautifully.",
-    img: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?q=80&w=800&auto=format&fit=crop",
+    img: "Celebration.jpeg",
     icon: Icon.Gift,
   },
   {
