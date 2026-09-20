@@ -225,13 +225,15 @@ export default function RealEstate() {
 
             <div className="mt-9 flex flex-wrap gap-4">
               <button
-                className="px-7 py-3.5 font-semibold tracking-wide text-neutral-950 hover:brightness-95 transition"
-                style={{ backgroundColor: BRASS }}
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/919876543210?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "_blank",
+                  )
+                }
+                className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition"
               >
-                BROWSE LISTINGS
-              </button>
-              <button className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 text-white hover:bg-white hover:text-neutral-950 transition">
-                SCHEDULE A VIEWING
+                BOOK A SHOOT
               </button>
             </div>
           </div>
@@ -262,9 +264,6 @@ export default function RealEstate() {
               Residential, commercial, luxury, or investment — every deal gets
               the same level of scrutiny, paperwork, and follow-through.
             </p>
-            <button className="mt-7 px-6 py-3 border border-neutral-900 font-semibold tracking-wide hover:bg-neutral-900 hover:text-white transition">
-              VIEW ALL SERVICES
-            </button>
           </div>
 
           <div
@@ -330,12 +329,7 @@ export default function RealEstate() {
                 .
               </h2>
             </div>
-            <button
-              className="px-6 py-3 border font-semibold tracking-wide hover:bg-white hover:text-neutral-950 transition"
-              style={{ borderColor: BRASS, color: BRASS }}
-            >
-              ALL LISTINGS
-            </button>
+            
           </div>
 
           <div className="flex flex-wrap justify-center sm:justify-start gap-8">
@@ -459,9 +453,17 @@ export default function RealEstate() {
             Book a no-obligation consultation and get a straight read on your
             options — buying, selling, or leasing.
           </p>
-          <button className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition">
-            GET IN TOUCH
-          </button>
+          <button
+  onClick={() =>
+    window.open(
+      "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
+      "_blank"
+    )
+  }
+  className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition"
+>
+  GET IN TOUCH
+</button>
         </div>
       </section>
     </main>

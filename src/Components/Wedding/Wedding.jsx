@@ -324,12 +324,14 @@ export default function Wedding() {
 
             <div className="mt-9 flex flex-wrap gap-4">
               <button
-                className="px-7 py-3.5 font-semibold tracking-wide text-neutral-950 hover:brightness-95 transition"
-                style={{ backgroundColor: GOLD }}
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "_blank",
+                  )
+                }
+                className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition"
               >
-                VIEW PORTFOLIO
-              </button>
-              <button className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition">
                 BOOK A SHOOT
               </button>
             </div>
@@ -356,9 +358,6 @@ export default function Wedding() {
               From the first pre-wedding walk to the last dance at the reception
               — I photograph the in-between moments people actually remember.
             </p>
-            <button className="mt-7 px-6 py-3 border border-neutral-900 font-semibold tracking-wide hover:bg-neutral-900 hover:text-white transition">
-              EXPLORE PACKAGES
-            </button>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 border border-neutral-200">
@@ -489,7 +488,15 @@ export default function Wedding() {
             Dates fill up fast in wedding season — get in touch to check
             availability.
           </p>
-          <button className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition">
+          <button
+            onClick={() =>
+              window.open(
+                "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
+                "_blank",
+              )
+            }
+            className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition"
+          >
             GET IN TOUCH
           </button>
         </div>

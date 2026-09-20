@@ -201,13 +201,15 @@ export default function Anchor() {
 
             <div className="mt-9 flex flex-wrap gap-4">
               <button
-                className="px-7 py-3.5 font-semibold tracking-wide text-neutral-950 hover:brightness-95 transition"
-                style={{ backgroundColor: GOLD }}
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "_blank",
+                  )
+                }
+                className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition"
               >
-                WATCH THE SHOW
-              </button>
-              <button className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition">
-                BOOK COVERAGE
+                BOOK A SHOOT
               </button>
             </div>
           </div>
@@ -233,9 +235,6 @@ export default function Anchor() {
               One booking covers the full film and every short-form cut you will
               want to send out afterward.
             </p>
-            <button className="mt-7 px-6 py-3 border border-neutral-900 font-semibold tracking-wide hover:bg-neutral-900 hover:text-white transition">
-              EXPLORE PACKAGES
-            </button>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 border border-neutral-200">
@@ -387,7 +386,15 @@ export default function Anchor() {
             Full film, eight reels, one booking — get in touch to lock in a
             date.
           </p>
-          <button className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition">
+          <button
+            onClick={() =>
+              window.open(
+                "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
+                "_blank",
+              )
+            }
+            className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition"
+          >
             GET IN TOUCH
           </button>
         </div>
