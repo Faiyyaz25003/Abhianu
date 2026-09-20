@@ -82,10 +82,10 @@ const specialties = [
 ];
 
 const stats = [
-  { label: "Club Nights Covered", value: "150+" },
-  { label: "DJ Sets Filmed", value: "80+" },
-  { label: "Cities on Tour", value: "12" },
-  { label: "Years in Nightlife", value: "5+" },
+  { label: "Club Nights Covered", value: "15+" },
+  { label: "DJ Sets Filmed", value: "15+" },
+  { label: "Cities on Tour", value: "8" },
+  { label: "Years in Nightlife", value: "2+" },
 ];
 
 const testimonials = [

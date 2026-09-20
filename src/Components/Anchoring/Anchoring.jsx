@@ -81,10 +81,10 @@ const specialties = [
 ];
 
 const stats = [
-  { label: "Events Hosted On-Camera", value: "60+" },
-  { label: "Reels Delivered", value: "300+" },
-  { label: "Cities Covered", value: "10" },
-  { label: "Turnaround", value: "24hr" },
+  { label: "Events Hosted", value: "60+" },
+  { label: "Reels Delivered", value: "70+" },
+  { label: "Brands Collaborated", value: "25+" },
+  { label: "Years of Experience", value: "2+" },
 ];
 
 const testimonials = [

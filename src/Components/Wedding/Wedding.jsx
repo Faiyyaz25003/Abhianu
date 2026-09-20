@@ -81,10 +81,10 @@ const specialties = [
 ];
 
 const stats = [
-  { label: "Weddings Shot", value: "120+" },
-  { label: "Couples Photographed", value: "300+" },
-  { label: "Years Behind the Lens", value: "6+" },
-  { label: "Cities Traveled To", value: "18" },
+  { label: "Wedding Covered", value: "20+" },
+  { label: "Wedding Filmed", value: "15+" },
+  { label: "Cities on Tour", value: "8" },
+  { label: "Years in Nightlife", value: "2+" },
 ];
 
 const testimonials = [

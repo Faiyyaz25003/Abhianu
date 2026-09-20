@@ -80,9 +80,9 @@ const specialties = [
 
 const stats = [
   { label: "Celebrations Filmed", value: "50+" },
-  { label: "Reels Delivered", value: "200+" },
-  { label: "Event Types Covered", value: "8" },
-  { label: "Turnaround", value: "24hr" },
+  { label: "Reels Delivered", value: "80+" },
+  { label: "Projects Completed", value: "20+" },
+  { label: "Years of Experience", value: "2+" },
 ];
 
 const testimonials = [

@@ -3,10 +3,10 @@
 import React from "react";
 
 // -----------------------------------------------------------------------------
-// Meridian Estates — Real Estate Landing Page (Next.js + Tailwind CSS)
+// Meridian Cuts — Video Editor Landing Page (Next.js + Tailwind CSS)
 // Single-file page component. No navbar / footer included.
-// Design language: architectural blueprint — ink, stone, and brass, with
-// property-tag labels and corner crop-marks as the signature motif.
+// Design language unchanged: ink, stone, and brass, with corner crop-marks
+// (now reading as camera-viewfinder frame marks) as the signature motif.
 // -----------------------------------------------------------------------------
 
 const INK = "#14181C";
@@ -19,8 +19,8 @@ const FONT_DISPLAY = "'Fraunces', 'Georgia', serif";
 const FONT_BODY = "'Inter', 'Helvetica Neue', sans-serif";
 const FONT_MONO = "'IBM Plex Mono', 'Courier New', monospace";
 
-// Corner crop-mark — the page's recurring signature element, used on the
-// hero image and each listing card to evoke a property survey / blueprint tag.
+// Corner frame marks — the page's recurring signature element, used on the
+// hero image and each video card to evoke a camera viewfinder.
 function CropMarks({ color = BRASS }) {
   return (
     <>
@@ -58,9 +58,9 @@ function CropMarks({ color = BRASS }) {
 
 const services = [
   {
-    tag: "RESIDENTIAL",
-    title: "Home Sales & Purchases",
-    desc: "Guiding buyers and sellers through every offer, inspection, and closing detail.",
+    tag: "SHORT-FORM",
+    title: "Reels, Shorts & TikToks",
+    desc: "Fast cuts, sharp hooks, captions, and sound design built to hold attention past the first three seconds.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -69,16 +69,32 @@ const services = [
         stroke={BRASS}
         strokeWidth="1.6"
       >
-        <path d="M3 11 12 3l9 8" />
-        <path d="M5 10v10h14V10" />
-        <path d="M10 20v-6h4v6" />
+        <rect x="7" y="2" width="10" height="20" rx="2" />
+        <path d="M10.5 10.5v3l3-1.5-3-1.5Z" />
+      </svg>
+    ),
+  },
+  {
+    tag: "LONG-FORM",
+    title: "YouTube & Podcast Edits",
+    desc: "Clean pacing, tight storytelling, chapter structure, and thumbnails that keep viewers watching to the end.",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        className="w-8 h-8"
+        stroke={BRASS}
+        strokeWidth="1.6"
+      >
+        <rect x="2" y="5" width="20" height="14" rx="2" />
+        <path d="M10 9.5v5l4.5-2.5L10 9.5Z" />
       </svg>
     ),
   },
   {
     tag: "COMMERCIAL",
-    title: "Office & Retail Leasing",
-    desc: "Matching businesses with spaces that fit their footprint, foot traffic, and budget.",
+    title: "Ads & Brand Films",
+    desc: "Polished promo videos, product launches, and brand stories with colour grading and motion graphics.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -87,15 +103,15 @@ const services = [
         stroke={BRASS}
         strokeWidth="1.6"
       >
-        <rect x="4" y="3" width="16" height="18" rx="1" />
-        <path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2" />
+        <path d="M3 7h18v12H3z" />
+        <path d="M3 7l3-4h4l-3 4M10 7l3-4h4l-3 4M17 7l3-4" />
       </svg>
     ),
   },
   {
-    tag: "LUXURY",
-    title: "Estates & New Builds",
-    desc: "Discreet representation for high-value properties and off-market listings.",
+    tag: "EVENTS",
+    title: "Weddings & Event Films",
+    desc: "Highlight reels and full-length edits that turn raw footage into a story people rewatch for years.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -104,74 +120,57 @@ const services = [
         stroke={BRASS}
         strokeWidth="1.6"
       >
-        <path d="M12 2 3 8v13h18V8L12 2Z" />
-        <path d="M9 21v-7h6v7" />
-      </svg>
-    ),
-  },
-  {
-    tag: "INVESTMENT",
-    title: "Portfolio & Rentals",
-    desc: "Sourcing yield-driven properties and managing tenant turnover end to end.",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        className="w-8 h-8"
-        stroke={BRASS}
-        strokeWidth="1.6"
-      >
-        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+        <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" />
       </svg>
     ),
   },
 ];
 
 const stats = [
-  { label: "Properties Sold", value: "480+" },
-  { label: "Total Sales Volume", value: "$210M" },
-  { label: "Years in the Market", value: "12+" },
-  { label: "Avg. Days to Close", value: "31" },
+  { label: "Videos Delivered", value: "50+" },
+  { label: "Years Editing", value: "2+" },
+  { label: "Creative Projects", value: "40+" },
 ];
 
 const testimonials = [
   {
     quote:
-      "Sold our home above asking in under three weeks. Every step was communicated clearly, no surprises.",
+      "Our reels went from 2k to 80k views in a month. The hooks and pacing completely changed our content.",
     name: "Rohit Sharma",
-    role: "Seller, Bandra West",
+    role: "Founder, Fit Nation",
   },
   {
     quote:
-      "Found us a warehouse space that matched our lease terms exactly. Negotiation was handled brilliantly.",
+      "Delivered a full podcast episode edit overnight, with clean audio and perfect cuts. Zero revisions needed.",
     name: "Anita Verma",
-    role: "Operations Lead, Global Solutions",
+    role: "Host, The Growth Table",
   },
   {
     quote:
-      "Sharp read on the market and honest about trade-offs. Exactly what you want in an agent.",
+      "Understood our brand style from the first brief. The launch video looked like it came from a big agency.",
     name: "Vikram Mehta",
-    role: "Investor, InnovateX Holdings",
+    role: "Marketing Head, InnovateX",
   },
 ];
 
-// Featured listing walkthroughs — vertical property tour videos.
+// Featured work — vertical showreel videos.
+// Replace the YouTube IDs with your own Shorts / reel uploads.
 const listings = [
   {
     id: "H6XQ-G-Pjes",
-    label: "3BHK Sea-Facing Residence",
-    address: "Bandra West, Mumbai",
-    price: "₹4.2 Cr",
+    label: "Brand Launch Reel",
+    address: "Ad edit · Colour graded",
+    price: "0:45",
   },
   {
     id: "a0VIRHaBHfY",
-    label: "Loft-Style Commercial Unit",
-    address: "Lower Parel, Mumbai",
-    price: "₹2.8 Cr",
+    label: "Creator Storytelling Short",
+    address: "Short-form · Captions + SFX",
+    price: "1:00",
   },
 ];
 
-export default function RealEstate() {
+export default function VideoEditor() {
   return (
     <main
       className="text-neutral-900"
@@ -185,9 +184,10 @@ export default function RealEstate() {
         style={{ backgroundColor: INK }}
       >
         <div className="absolute inset-0">
+          {/* Swap this image for one of your own (editing setup / still from your work) */}
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
-            alt="Modern architectural residence at dusk"
+            src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1600&auto=format&fit=crop"
+            alt="Video editing timeline on a dark studio monitor"
             className="w-full h-full object-cover opacity-40"
           />
           <div
@@ -203,37 +203,38 @@ export default function RealEstate() {
             className="uppercase text-xs tracking-[0.25em] mb-5"
             style={{ color: BRASS, fontFamily: FONT_MONO }}
           >
-            MERIDIAN ESTATES — MUMBAI
+            MERIDIAN CUTS — MUMBAI
           </p>
           <div className="max-w-2xl">
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-white"
               style={{ fontFamily: FONT_DISPLAY }}
             >
-              Every address
+              Every frame
               <br />
               tells a{" "}
               <span style={{ color: BRASS, fontStyle: "italic" }}>
-                different
+                better
               </span>{" "}
               story.
             </h1>
             <p className="mt-6 text-neutral-300 text-lg max-w-xl">
-              From first homes to landmark commercial deals — I help you read
-              the market, negotiate with confidence, and close on your terms.
+              From viral reels to brand films — I turn raw footage into videos
+              with strong hooks, clean pacing, and a finish that makes people
+              hit replay.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-4">
               <button
                 onClick={() =>
                   window.open(
-                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20my%20video%20edited.",
                     "_blank",
                   )
                 }
                 className="px-7 py-3.5 font-semibold tracking-wide text-white border border-white/70 hover:bg-white hover:text-neutral-950 transition"
               >
-                BOOK A SHOOT
+                START YOUR EDIT
               </button>
             </div>
           </div>
@@ -256,13 +257,13 @@ export default function RealEstate() {
               className="mt-3 text-3xl sm:text-4xl leading-tight"
               style={{ fontFamily: FONT_DISPLAY }}
             >
-              Property matters,{" "}
-              <span style={{ color: BRICK, fontStyle: "italic" }}>handled</span>{" "}
+              Raw footage,{" "}
+              <span style={{ color: BRICK, fontStyle: "italic" }}>edited</span>{" "}
               properly.
             </h2>
             <p className="mt-5 text-neutral-600">
-              Residential, commercial, luxury, or investment — every deal gets
-              the same level of scrutiny, paperwork, and follow-through.
+              Short-form, long-form, ads, or events — every project gets the
+              same care with cuts, colour, sound, and on-time delivery.
             </p>
           </div>
 
@@ -304,7 +305,7 @@ export default function RealEstate() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* FEATURED LISTINGS — property walkthrough reels */}
+      {/* FEATURED WORK — showreel videos */}
       {/* ---------------------------------------------------------------- */}
       <section className="py-20 lg:py-24" style={{ backgroundColor: INK }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -314,17 +315,17 @@ export default function RealEstate() {
                 className="uppercase text-xs font-semibold tracking-[0.25em]"
                 style={{ color: BRASS, fontFamily: FONT_MONO }}
               >
-                FEATURED LISTINGS
+                FEATURED WORK
               </p>
               <h2
                 className="mt-3 text-3xl sm:text-4xl leading-tight text-white"
                 style={{ fontFamily: FONT_DISPLAY }}
               >
-                Walk the property
+                Watch the edits
                 <br />
                 before you{" "}
                 <span style={{ color: BRASS, fontStyle: "italic" }}>
-                  visit it
+                  hire me
                 </span>
                 .
               </h2>
@@ -371,7 +372,7 @@ export default function RealEstate() {
       {/* STATS */}
       {/* ---------------------------------------------------------------- */}
       <section className="py-14" style={{ backgroundColor: STONE }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-2 sm:grid-cols-4 gap-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-3 gap-4 sm:gap-10">
           {stats.map((s) => (
             <div key={s.label} className="text-center sm:text-left">
               <p
@@ -395,7 +396,7 @@ export default function RealEstate() {
             className="uppercase text-xs font-semibold tracking-[0.25em]"
             style={{ color: BRASS, fontFamily: FONT_MONO }}
           >
-            CLIENT RECORD
+            CLIENT REVIEWS
           </p>
           <h2
             className="mt-3 text-3xl sm:text-4xl leading-tight mb-12 text-white"
@@ -404,7 +405,7 @@ export default function RealEstate() {
             What clients say
             <br />
             <span style={{ color: BRASS, fontStyle: "italic" }}>
-              after closing.
+              after delivery.
             </span>
           </h2>
 
@@ -444,18 +445,18 @@ export default function RealEstate() {
             className="text-2xl sm:text-3xl leading-snug text-neutral-950"
             style={{ fontFamily: FONT_DISPLAY }}
           >
-            Ready to make
+            Got footage
             <br />
-            your next move?
+            waiting to be cut?
           </h3>
           <p className="text-neutral-900/80 max-w-sm text-sm">
-            Book a no-obligation consultation and get a straight read on your
-            options — buying, selling, or leasing.
+            Send me your raw clips and a quick brief. You will get a free sample
+            cut and a clear quote, no obligation.
           </p>
           <button
             onClick={() =>
               window.open(
-                "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
+                "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch%20about%20a%20video%20edit.",
                 "_blank",
               )
             }

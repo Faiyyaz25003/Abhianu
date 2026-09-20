@@ -83,9 +83,9 @@ const specialties = [
 
 const stats = [
   { label: "Devotional Evenings Filmed", value: "40+" },
-  { label: "Reels Delivered", value: "150+" },
-  { label: "Temples & Venues", value: "12" },
-  { label: "Turnaround", value: "24hr" },
+  { label: "Reels Delivered", value: "80+" },
+  { label: "Temples & Venues", value: "20+" },
+  { label: "Years of Experience", value: "2+" },
 ];
 
 const testimonials = [

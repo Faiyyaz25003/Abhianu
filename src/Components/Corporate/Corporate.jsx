@@ -85,9 +85,8 @@ const services = [
 
 const stats = [
   { label: "Events Covered", value: "50+" },
-  // { label: "Corporate Clients", value: "50+" },
   { label: "Years of Experience", value: "2+" },
-  { label: "Memorable Moments", value: "100+" },
+  { label: "Memorable Moments", value: "35+" },
 ];
 
 const testimonials = [
