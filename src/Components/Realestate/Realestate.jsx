@@ -227,7 +227,7 @@ export default function RealEstate() {
               <button
                 onClick={() =>
                   window.open(
-                    "https://wa.me/919876543210?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
                     "_blank",
                   )
                 }
@@ -329,7 +329,6 @@ export default function RealEstate() {
                 .
               </h2>
             </div>
-            
           </div>
 
           <div className="flex flex-wrap justify-center sm:justify-start gap-8">
@@ -454,16 +453,16 @@ export default function RealEstate() {
             options — buying, selling, or leasing.
           </p>
           <button
-  onClick={() =>
-    window.open(
-      "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
-      "_blank"
-    )
-  }
-  className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition"
->
-  GET IN TOUCH
-</button>
+            onClick={() =>
+              window.open(
+                "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
+                "_blank",
+              )
+            }
+            className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition"
+          >
+            GET IN TOUCH
+          </button>
         </div>
       </section>
     </main>

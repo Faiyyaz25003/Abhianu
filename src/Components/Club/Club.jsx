@@ -316,7 +316,7 @@ export default function Nightlife() {
               <button
                 onClick={() =>
                   window.open(
-                    "https://wa.me/919876543210?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
                     "_blank",
                   )
                 }
