@@ -176,13 +176,6 @@ const services = [
     img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
     icon: Icon.Home,
   },
-  {
-    title: "Event",
-    href: "#event-types", // navbar me Event ka apna page nahi hai, sirf dropdown hai
-    desc: "We cover all kinds of events with creativity, professionalism and attention to detail.",
-    img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop",
-    icon: Icon.Calendar,
-  },
 ];
 
 const occasions = [
@@ -274,10 +267,9 @@ const portfolioData = {
 };
 
 const stats = [
-  { icon: Icon.Camera, num: "1500+", label: "Projects Completed" },
-  { icon: Icon.Smile, num: "800+", label: "Happy Clients" },
-  { icon: Icon.Medal, num: "10+", label: "Years Experience" },
-  { icon: Icon.Users, num: "50+", label: "Team Members" },
+  { icon: Icon.Camera, num: "150+", label: "Projects Completed" },
+  { icon: Icon.Smile, num: "100+", label: "Happy Clients" },
+  { icon: Icon.Medal, num: "2+", label: "Years Experience" },
 ];
 
 const testimonials = [
@@ -440,9 +432,9 @@ export default function Home() {
 
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-xl shadow-lg border border-slate-100 px-6 py-5 grid grid-cols-3 gap-4">
             {[
-              { icon: Icon.Medal, num: "10+", label: "Years Experience" },
-              { icon: Icon.Camera, num: "1500+", label: "Projects Completed" },
-              { icon: Icon.Smile, num: "800+", label: "Happy Clients" },
+              { icon: Icon.Medal, num: "2+", label: "Years Experience" },
+              { icon: Icon.Camera, num: "150+", label: "Projects Completed" },
+              { icon: Icon.Smile, num: "100+", label: "Happy Clients" },
             ].map((s) => {
               const I = s.icon;
               return (
@@ -460,9 +452,19 @@ export default function Home() {
       {/* ---------- Services ---------- */}
       <section className="max-w-7xl mx-auto px-5 md:px-8 pt-24 pb-8">
         <EyebrowHeading eyebrow="OUR SERVICES" title="What We Offer" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((s) => (
-            <ServiceCard key={s.title} item={s} />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {services.map((s, i) => (
+            <div
+              key={s.title}
+              className={
+                // 2-column (tablet) layout me 3rd card akela reh jata hai, use center kar do
+                i === services.length - 1 && services.length % 2 === 1
+                  ? "sm:col-span-2 sm:max-w-sm sm:mx-auto sm:w-full lg:col-span-1 lg:max-w-none lg:mx-0"
+                  : ""
+              }
+            >
+              <ServiceCard item={s} />
+            </div>
           ))}
         </div>
       </section>
