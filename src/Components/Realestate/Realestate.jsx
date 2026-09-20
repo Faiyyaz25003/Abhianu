@@ -231,7 +231,7 @@ export default function RealEstate() {
                     "_blank",
                   )
                 }
-                className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition"
+                className="px-7 py-3.5 font-semibold tracking-wide text-white border border-white/70 hover:bg-white hover:text-neutral-950 transition"
               >
                 BOOK A SHOOT
               </button>
