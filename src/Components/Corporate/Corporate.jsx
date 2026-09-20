@@ -146,13 +146,15 @@ export default function RealEstate() {
 
             <div className="mt-9 flex flex-wrap gap-4">
               <button
-                className="px-7 py-3.5 font-semibold tracking-wide text-neutral-950 hover:brightness-95 transition"
-                style={{ backgroundColor: GOLD }}
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20book%20a%20shoot.",
+                    "_blank",
+                  )
+                }
+                className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition"
               >
-                VIEW PORTFOLIO
-              </button>
-              <button className="px-7 py-3.5 font-semibold tracking-wide border border-white/70 hover:bg-white hover:text-neutral-950 transition">
-                BOOK NOW
+                BOOK A SHOOT
               </button>
             </div>
           </div>
@@ -179,9 +181,6 @@ export default function RealEstate() {
               From conferences to award nights, product launches to team events
               – I capture every important moment with creativity and precision.
             </p>
-            <button className="mt-7 px-6 py-3 border border-neutral-900 font-semibold tracking-wide hover:bg-neutral-900 hover:text-white transition">
-              EXPLORE SERVICES
-            </button>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 border border-neutral-200">
@@ -217,12 +216,6 @@ export default function RealEstate() {
                 <span style={{ color: GOLD }}>Speak for Themselves</span>
               </h2>
             </div>
-            <button
-              className="px-6 py-3 border font-semibold tracking-wide hover:bg-white hover:text-neutral-950 transition"
-              style={{ borderColor: GOLD, color: GOLD }}
-            >
-              VIEW ALL WORKS
-            </button>
           </div>
 
           {/* Reels grid — vertical / shorts aspect ratio (9:16) */}
@@ -319,7 +312,15 @@ export default function RealEstate() {
             Professional photography that showcases your event and elevates your
             brand.
           </p>
-          <button className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition">
+          <button
+            onClick={() =>
+              window.open(
+                "https://wa.me/918976626521?text=Hello%2C%20I%20want%20to%20get%20in%20touch.",
+                "_blank",
+              )
+            }
+            className="px-7 py-3.5 font-semibold tracking-wide bg-neutral-950 text-white hover:bg-neutral-800 transition"
+          >
             GET IN TOUCH
           </button>
         </div>
