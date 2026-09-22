@@ -143,18 +143,18 @@ export default function Footer() {
             <ul className="mt-5 space-y-3.5">
               <li>
                 <a
-                  href="mailto:hello@abhianuedition.com"
+                  href="mailto:Abhishekmaurya7666@gmail.com"
                   className="text-[10px] font-semibold uppercase tracking-[1.2px] text-[#555] transition-colors duration-300 hover:text-[#c58b22]"
                 >
-                  hello@abhianuedition.com
+                  Abhishekmaurya7666@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+91 89766 26521"
                   className="text-[10px] font-semibold uppercase tracking-[1.2px] text-[#555] transition-colors duration-300 hover:text-[#c58b22]"
                 >
-                  +91 12345 67890
+                  +91 89766 26521
                 </a>
               </li>
               <li className="text-[10px] font-semibold uppercase tracking-[1.2px] text-[#777]">
