@@ -2,12 +2,6 @@
 
 import Link from "next/link";
 
-// -----------------------------------------------------------------------------
-// AbhiAnu Edition — Site Footer (Next.js + Tailwind CSS)
-// Matches Navbar.jsx exactly: white background, #c58b22 gold accent,
-// #171717 ink, #e8e8e8 / #eeeeee hairlines, font-serif logo mark, and the
-// same uppercase / tracking-[1.5px] label treatment used in the nav.
-// -----------------------------------------------------------------------------
 
 const services = ["Wedding", "Night Club", "Real Estate"];
 
@@ -29,18 +23,11 @@ export default function Footer() {
 
           <div className="max-w-xs">
             <Link href="/" className="group flex items-center">
-              <div className="mr-2 text-[35px] leading-none text-[#c58b22]">
-                ♧
-              </div>
-              <div className="leading-none">
-                <div className="font-serif text-[25px] font-normal tracking-tight text-[#171717]">
-                  Abhi
-                  <span className="italic text-[#c58b22]">Anu</span>
-                </div>
-                <div className="mt-[4px] text-center text-[7px] font-semibold tracking-[4px] text-[#222]">
-                  EDITION
-                </div>
-              </div>
+              <img
+                src="/logo.png"
+                alt="AbhiAnu Edition"
+                className="w-[300px] h-auto object-contain"
+              />
             </Link>
 
             <p className="mt-5 text-[12px] leading-relaxed text-[#666]">
